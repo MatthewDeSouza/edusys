@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -32,8 +33,15 @@ public class Assignment {
     @Column(name = "content")
     String content;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "due_date_time", nullable = false)
+    LocalDateTime dueDateTime;
+
     @ManyToOne(targetEntity = Course.class)
     Course course;
+
+    @OneToMany(targetEntity = Grade.class, mappedBy = "assignment")
+    Set<Grade> grades;
 
     @ManyToMany(targetEntity = Person.class)
     @JoinTable(
