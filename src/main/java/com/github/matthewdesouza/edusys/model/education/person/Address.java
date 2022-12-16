@@ -23,9 +23,6 @@ public class Address {
     @Version
     long version;
 
-    @OneToOne(targetEntity = Person.class)
-    Person resident;
-
     @Column(name = "address_1", nullable = false)
     String addressLine1;
 
@@ -40,4 +37,7 @@ public class Address {
 
     @Column(name = "zip", nullable = false, length = 5)
     String zipCode;
+
+    @OneToOne(targetEntity = Person.class)
+    Person resident;
 }
